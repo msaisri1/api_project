@@ -12,6 +12,8 @@ passlib==1.7.1
 Flask-HTTPAuth==3.2.3
 flask-bcrypt
 flask-jwt-extended
-
+flask-sqlalchemy
+flask-swagger-ui
+requests
 
 #pip install -r requirements.txt

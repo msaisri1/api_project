@@ -1,0 +1,288 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "api",
+        "version": "1.0.0",
+        "title": "Api Project",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "tags": [
+        {
+            "name": "Product API",
+            "description": "Test API"
+        }
+    ],
+    "servers": [
+        {
+            "url": "/"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "EmployeeDetails": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Id": {
+                "type": "integer",
+                "properties": {
+                    "name": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "update": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "avatar": {
+                        "type": "string"
+                    },
+                    "payments": {
+                        "type": "string"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UserData": {
+                "type": "object",
+                "properties": {
+                    "access_token": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "paths": {
+        "/register": {
+            "post": {
+                "tags": [
+                    "User Registration API"
+                ],
+                "summary": "User Registration",
+                "requestBody": {
+                    "description": "Post User credentials to Database",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "User Authentication API"
+                ],
+                "summary": "User Login",
+                "requestBody": {
+                    "description": "Authenticating user data from Database",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserData"
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserData"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/all_employees": {
+            "get": {
+                "tags": [
+                    "Get All Employee Data"
+                ],
+                "summary": "Get All Employees",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/EmployeeDetails"
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/components/schemas/EmployeeDetails"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/all_employee_by_id/{id}": {
+            "get": {
+                "tags": [
+                    "Get Employee data from API"
+                ],
+                "summary": "Get employee data",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee id to get data",
+                        "required": true,
+                        "type": "integer",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/EmployeeDetails"
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/components/schemas/EmployeeDetails"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/update_employee/{id}": {
+            "put": {
+                "tags": [
+                    "Update employee details on API"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "employee id to update",
+                        "required": true,
+                        "type": "integer",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
+                        }
+                    }
+                ],
+                "summary": "Update Employee Details",
+                "requestBody": {
+                    "description": "Update Existing Employee Details On Database",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/update"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/EmployeeDetails"
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/components/schemas/EmployeeDetails"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/delete_employee/{id}": {
+            "delete": {
+                "tags": [
+                    "Delete Employee details API"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee id to delete",
+                        "required": true,
+                        "type": "integer",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
+                        }
+                    }
+                ],
+                "summary": "Delete Employee details",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/EmployeeDetails"
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/components/schemas/EmployeeDetails"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -12,6 +12,9 @@ from flask_jwt_extended import jwt_required
 from flask_bcrypt import Bcrypt
 import json
 
+from flask_swagger_ui import get_swaggerui_blueprint
+
+
 
 
 app = Flask(__name__)
@@ -27,6 +30,19 @@ bcrypt = Bcrypt(app)
 # Set up JWT
 app.config["JWT_SECRET_KEY"] = "my-secret-key"
 jwt = JWTManager(app)
+
+
+SWAGGER_URL = '/swagger'
+API_URL = '/static/swagger.json'
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': 'Api Project'
+    }
+)
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
+
 
 
 
@@ -89,6 +105,7 @@ def update_employee(id):
     employee.name = result['name']
     employee.createdAt = result['createdAt']
     employee.avatar = result['avatar']
+    employee.payments = result['payments']
     db.session.commit()
     return emp_schema.dump(result)
 
@@ -104,8 +121,9 @@ def register():
     # Save the user to the database
     new_user = User(username=data['username'], password=hashed_password)
     db.session.add(new_user)
-    return jsonify({'message': "successfully registered"}), 201
     db.session.commit()
+    return jsonify({'message': "successfully registered"}), 201
+    
    
 
 
