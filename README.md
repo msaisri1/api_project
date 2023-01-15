@@ -2,15 +2,18 @@
 
 # Install the below libraries
 
- python -m venv .venv
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1 
 
 pip install -r requirements.txt
 
-python -m pip uninstall flask-sqlalchemy
-
 python -m pip install flask-sqlalchemy
 
+# To build docker image
+docker build -t saisri/api-project:0.0.1.RELEASE .
+
+# To run docker image (creating docker container)
+docker run -p 5000:5000 {docker_image_ID}
 
 
 # A Micro service app to fetch crypto currency market updates
@@ -43,7 +46,6 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install requrie
 aniso8601==8.1.0
 flask-marshmallow==0.14.0
 Flask-RESTful==0.3.8
-Flask-SQLAlchemy==2.4.4
 marshmallow==3.10.0
 marshmallow-sqlalchemy==0.24.1
 PyMySQL==0.10.1
@@ -54,6 +56,8 @@ passlib==1.7.1
 Flask-HTTPAuth==3.2.3
 flask-bcrypt
 flask-jwt-extended
+flask-swagger-ui
+requests
 ```
 
 ## Testing

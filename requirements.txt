@@ -1,7 +1,6 @@
 aniso8601==8.1.0
 flask-marshmallow==0.14.0
 Flask-RESTful==0.3.8
-Flask-SQLAlchemy==2.4.4
 marshmallow==3.10.0
 marshmallow-sqlalchemy==0.24.1
 PyMySQL==0.10.1
@@ -12,8 +11,5 @@ passlib==1.7.1
 Flask-HTTPAuth==3.2.3
 flask-bcrypt
 flask-jwt-extended
-flask-sqlalchemy
 flask-swagger-ui
 requests
-
-#pip install -r requirements.txt
