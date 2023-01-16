@@ -13,3 +13,5 @@ flask-bcrypt
 flask-jwt-extended
 flask-swagger-ui
 requests
+flask-sqlalchemy
+pytest
