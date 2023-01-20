@@ -22,66 +22,73 @@
     ],
     "components": {
         "schemas": {
-            "EmployeeDetails": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    }
-                }
-            },
-            "Id": {
-                "type": "integer",
-                "properties": {
-                    "name": {
-                        "type": "integer"
-                    }
-                }
-            },
-            "update": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "createdAt": {
-                        "type": "string"
-                    },
-                    "avatar": {
-                        "type": "string"
-                    },
-                    "payments": {
-                        "type": "string"
-                    }
-                }
-            },
-            "User": {
-                "type": "object",
-                "properties": {
-                    "username": {
-                        "type": "string"
-                    },
-                    "password": {
-                        "type": "string"
-                    }
-                }
-            },
-            "UserData": {
-                "type": "object",
-                "properties": {
-                    "access_token": {
-                        "type": "string"
-                    },
-                    "message": {
-                        "type": "string"
-                    }
-                }
+          "EmployeeDetails": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
             }
+          },
+          "Id": {
+            "type": "integer",
+            "properties": {
+              "name": {
+                "type": "integer"
+              }
+            }
+          },
+          "update": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "avatar": {
+                "type": "string"
+              },
+              "payments": {
+                "type": "string"
+              }
+            }
+          },
+          "User": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            }
+          },
+          "UserData": {
+            "type": "object",
+            "properties": {
+              "access_token": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "securitySchemes": {
+          "Bearerauth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+          }
         }
-    },
+      },
     "paths": {
         "/register": {
             "post": {
@@ -155,6 +162,11 @@
                     "Get All Employee Data"
                 ],
                 "summary": "Get All Employees",
+                "security":[
+                    {
+                        "Bearerauth":[]
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -177,6 +189,11 @@
                     "Get Employee data from API"
                 ],
                 "summary": "Get employee data",
+                "security":[
+                    {
+                        "Bearerauth":[]
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -209,6 +226,11 @@
             "put": {
                 "tags": [
                     "Update employee details on API"
+                ],
+                "security":[
+                    {
+                        "Bearerauth":[]
+                    }
                 ],
                 "parameters": [
                     {
@@ -254,6 +276,11 @@
             "delete": {
                 "tags": [
                     "Delete Employee details API"
+                ],
+                "security":[
+                    {
+                        "Bearerauth":[]
+                    }
                 ],
                 "parameters": [
                     {

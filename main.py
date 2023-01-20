@@ -95,7 +95,7 @@ def delete_employee(id):
 
 
 @app.route('/api/v1/update_employee/<int:id>', methods=['PUT'])
-#@jwt_required
+@jwt_required
 def update_employee(id):
     employee = Employee.query.get(id)
     if employee is None:
